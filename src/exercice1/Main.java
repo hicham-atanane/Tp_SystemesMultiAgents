@@ -13,21 +13,29 @@ public class Main {
 
         AgentJoueur j1 = new AgentJoueur('X');
         AgentJoueur j2 = new AgentJoueur('O');
-        while (!gameOver(ticTacToe)){
+        int counter = 0;
+        while (!gameOver(ticTacToe) &&9 counter < 9){
             System.out.println("------------");
             j1.jouer(ticTacToe);
             affichage(ticTacToe);
 
             if (gagner(ticTacToe, j1.getSymbole())){
+                System.out.println(j1.getSymbole()+" a gagné");
                 break;
             }
-
+            counter ++;
             System.out.println("------------");
 
             j2.jouer(ticTacToe);
             affichage(ticTacToe);
 
             if (gagner(ticTacToe, j2.getSymbole())){
+                System.out.println(j2.getSymbole()+" a gagné");
+                break;
+            }
+            counter ++;
+            if (counter >= 9){
+                System.out.println("Match nulle");
                 break;
             }
         }
