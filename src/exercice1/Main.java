@@ -14,7 +14,7 @@ public class Main {
         AgentJoueur j1 = new AgentJoueur('X');
         AgentJoueur j2 = new AgentJoueur('O');
         int counter = 0;
-        while (!gameOver(ticTacToe) &&9 counter < 9){
+        while (!gameOver(ticTacToe) && counter < 10){
             System.out.println("------------");
             j1.jouer(ticTacToe);
             affichage(ticTacToe);
@@ -25,7 +25,10 @@ public class Main {
             }
             counter ++;
             System.out.println("------------");
-
+            if (counter >= 9){
+                System.out.println("Match nulle");
+                break;
+            }
             j2.jouer(ticTacToe);
             affichage(ticTacToe);
 
@@ -34,10 +37,6 @@ public class Main {
                 break;
             }
             counter ++;
-            if (counter >= 9){
-                System.out.println("Match nulle");
-                break;
-            }
         }
     }
 //--------------------Methods--------------------------------------
