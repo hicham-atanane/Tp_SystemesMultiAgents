@@ -7,12 +7,12 @@ public class AgentJoueur {
 
     public void jouer(Character[][] ticTacToe){
         Random rand = new Random();
-        int i= rand.nextInt((2 - 0) + 1);
-        int j= rand.nextInt((2 - 0) + 1);
+        int i= rand.nextInt(3);
+        int j= rand.nextInt(3);
 //      regenerer les indices tant que la case n'est pas vide (!= '_')
         while (ticTacToe[i][j]!='_'){
-            i= rand.nextInt((2 - 0) + 1);
-            j= rand.nextInt((2 - 0) + 1);
+            i= rand.nextInt(3);
+            j= rand.nextInt(3);
         }
         ticTacToe[i][j] = this.symbole;
     }

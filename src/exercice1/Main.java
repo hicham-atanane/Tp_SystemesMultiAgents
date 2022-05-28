@@ -20,19 +20,24 @@ public class Main {
             affichage(ticTacToe);
 
             if (gagner(ticTacToe, j1.getSymbole())){
+                System.out.println("------------");
+                affichage(ticTacToe);
                 System.out.println(j1.getSymbole()+" a gagné");
                 break;
             }
+
             counter ++;
-            System.out.println("------------");
-            if (counter >= 9){
+            if (counter == 9){
                 System.out.println("Match nulle");
                 break;
             }
             j2.jouer(ticTacToe);
+            System.out.println("------------");
             affichage(ticTacToe);
 
             if (gagner(ticTacToe, j2.getSymbole())){
+                System.out.println("------------");
+                affichage(ticTacToe);
                 System.out.println(j2.getSymbole()+" a gagné");
                 break;
             }
@@ -69,31 +74,50 @@ public class Main {
 //------------------------------------------------------------------
     public static boolean gagner(Character[][] ticTacToe, char symbole){
         boolean flag = false;
-//        par ligne
-        if (ticTacToe[0][0] !='_' && ticTacToe[0][0]==ticTacToe[0][1] && ticTacToe[0][0]==ticTacToe[0][2]){
-            flag = true;
-        } else if (ticTacToe[1][0] !='_' && ticTacToe[1][0]==ticTacToe[1][1] && ticTacToe[1][0]==ticTacToe[1][2]){
-            flag = true;
-        } else if (ticTacToe[2][0] !='_' && ticTacToe[2][0]==ticTacToe[2][1] && ticTacToe[2][0]==ticTacToe[2][2]){
-            flag = true;
+        char similaire;
+        int counter1;
+        int counter2;
+//  par ligne
+        for (int i = 0; i < 3; i++) {
+            counter1 = 0;
+            similaire = ticTacToe[i][0];
+            if (similaire!='_'){
+                for (int j = 1; j < 3; j++) {
+                    if (ticTacToe[i][j]!=similaire){ break;}
+                    counter1 ++;
+                }
+            }
+            if (counter1 == 2){ flag = true; break;}
         }
-
-//        par colonne
-        if (ticTacToe[0][0] !='_' && ticTacToe[0][0]==ticTacToe[1][0] && ticTacToe[0][0]==ticTacToe[2][0]){
-            flag = true;
-        } else if (ticTacToe[0][1] !='_' && ticTacToe[0][1]==ticTacToe[1][1] && ticTacToe[1][1]==ticTacToe[2][1]){
-            flag = true;
-        } else if (ticTacToe[0][2] !='_' && ticTacToe[0][2]==ticTacToe[1][2] && ticTacToe[2][2]==ticTacToe[0][2]){
-            flag = true;
+//  par colonne
+        for (int i = 0; i < 3; i++) {
+            counter1 = 0;
+            similaire = ticTacToe[0][i];
+            if (similaire!='_'){
+                for (int j = 1; j < 3; j++) {
+                    if (ticTacToe[j][i]!=similaire){ break;}
+                    counter1 ++;
+                }
+            }
+            if (counter1 == 2){ flag = true; break;}
         }
-
-//        par diagonale
-        if (ticTacToe[0][0] !='_' && ticTacToe[0][0]==ticTacToe[1][1] && ticTacToe[0][0]==ticTacToe[2][2]){
-            flag = true;
-        } else if (ticTacToe[2][0] !='_' && ticTacToe[2][0]==ticTacToe[1][1] && ticTacToe[1][1]==ticTacToe[0][2]){
-            flag = true;
+//  par diagonale
+        for (int i = 0; i < 3; i++) {
+            similaire = ticTacToe[i][i];
+            counter1 = 0;
+            counter2 = 0;
+            if (similaire!='_'){
+                for (int j = 1; j < 3; j++) {
+                    if (ticTacToe[j][j]!=similaire){ break;}
+                    counter1 ++;
+                }
+                for (int j = 1; j < 3; j++) {
+                    if (ticTacToe[j][2-j]!=similaire){ break;}
+                    counter2 ++;
+                }
+            }
+            if (counter1 == 2 || counter2 == 2){ flag = true; break;}
         }
         return flag;
     }
-
 }
