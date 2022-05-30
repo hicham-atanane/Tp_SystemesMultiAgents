@@ -5,7 +5,7 @@ import java.util.Random;
 public class AgentJoueur {
     char symbole;
 
-    public void jouer(Character[][] ticTacToe){
+    public boolean jouer(Character[][] ticTacToe){
         Random rand = new Random();
         int i= rand.nextInt(3);
         int j= rand.nextInt(3);
@@ -15,6 +15,7 @@ public class AgentJoueur {
             j= rand.nextInt(3);
         }
         ticTacToe[i][j] = this.symbole;
+        return true;
     }
 //  ---------------------------- Constructeur, Getters And Setters -----------------------
     public char getSymbole() {
